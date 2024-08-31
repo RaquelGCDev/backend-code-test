@@ -1,4 +1,4 @@
-import { test, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import request from 'supertest';
 import app from "../../../src/api/app";
 
@@ -9,7 +9,6 @@ describe("POST to create a new genially", () => {
         const response = await request(app)
             .post("/genially")
             .send(newGenially);
-
         expect(response.status).toBe(201);
     });
 });
