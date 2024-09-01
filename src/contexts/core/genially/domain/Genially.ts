@@ -1,6 +1,9 @@
 import GeniallyId from "./value-object/GeniallyId";
 import GeniallyName from "./value-object/GeniallyName";
 import GeniallyDescription from "./value-object/GeniallyDescription";
+import GeniallyCreatedAt from "./value-object/GeniallyCreatedAt";
+import GeniallyModifiedAt from "./value-object/GeniallyModifiedAt";
+import GeniallyDeletedAt from "./value-object/GeniallyDeletedAt";
 
 export type GeniallyPrimitives = {
   id: string;
@@ -15,9 +18,9 @@ export default class Genially {
   private _id: GeniallyId;
   private _name: GeniallyName;
   private _description: GeniallyDescription;
-  private _createdAt: Date;
-  private _modifiedAt: Date;
-  private _deletedAt: Date;
+  private _createdAt: GeniallyCreatedAt;
+  private _modifiedAt: GeniallyModifiedAt;
+  private _deletedAt: GeniallyDeletedAt;
 
   constructor(id: GeniallyId, name: GeniallyName, description?: GeniallyDescription) {
     this._id = id;
@@ -46,23 +49,23 @@ export default class Genially {
     return this._description;
   }
 
-  get createdAt(): Date {
+  get createdAt(): GeniallyCreatedAt {
     return this._createdAt;
   }
 
-  get modifiedAt(): Date {
+  get modifiedAt(): GeniallyModifiedAt {
     return this._modifiedAt;
   }
 
-  get deletedAt(): Date {
+  get deletedAt(): GeniallyDeletedAt {
     return this._deletedAt;
   }
 
   delete(): void {
-    this._deletedAt = new Date();
+    this._deletedAt = new GeniallyDeletedAt(new Date());
   }
 
   update(): void {
-    this._modifiedAt = new Date();
+    this._modifiedAt = new GeniallyModifiedAt(new Date());
   }
 }
