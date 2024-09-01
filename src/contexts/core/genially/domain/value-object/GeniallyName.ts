@@ -9,7 +9,7 @@ export default class GeniallyName extends StringValueObject {
 
     private ensureLengthIsValid(value: string): void {
         if (value.length > 20 || value.length < 3) {
-            throw new NameLengthNotValid(`The Genially Name <${value}> has more than 30 characters`);
+            throw new NameLengthNotValid(`The Genially Name <${value}> has less than 3 characters or more than 20`);
         }
     }
 

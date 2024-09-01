@@ -21,7 +21,7 @@ describe("PUT to rename an existing genially", () => {
 
         const response = await request(app)
             .put("/genially/e2dedd4e-1a02-4af2-9158-fd55261795f3")
-            .send({ name: "aNewName" });
+                .send({ name: "aNewName" });
 
         expect(response.status).toEqual(204);
     });
