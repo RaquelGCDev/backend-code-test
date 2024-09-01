@@ -22,10 +22,13 @@ export default class Genially {
   private _modifiedAt: GeniallyModifiedAt;
   private _deletedAt: GeniallyDeletedAt;
 
-  constructor(id: GeniallyId, name: GeniallyName, description?: GeniallyDescription) {
+  constructor(id: GeniallyId, name: GeniallyName, description?: GeniallyDescription, createdAt?: GeniallyCreatedAt, modifiedAt?: GeniallyModifiedAt, deletedAt?: GeniallyDeletedAt) {
     this._id = id;
     this._name = name;
     this._description = description;
+    this._createdAt = createdAt;
+    this._modifiedAt = modifiedAt;
+    this._deletedAt = deletedAt;
   }
 
 
@@ -67,5 +70,26 @@ export default class Genially {
 
   update(): void {
     this._modifiedAt = new GeniallyModifiedAt(new Date());
+  }
+
+  static fromPrimitives(data: { id: string, name: string, description: string, createdAt: Date, modifiedAt: Date, deletedAt: Date }): Genially {
+    return new Genially(
+        new GeniallyId(data.id),
+        new GeniallyName(data.name),
+        data.description !== null ? new GeniallyDescription(data.description) : undefined,
+        new GeniallyCreatedAt(data.createdAt),
+        data.modifiedAt !== null ? new GeniallyModifiedAt(data.modifiedAt) : undefined,
+        data.deletedAt !== null ? new GeniallyDeletedAt(data.deletedAt) : undefined);
+  }
+
+  toPrimitives(): GeniallyPrimitives {
+    return {
+      id: this._id.value,
+      name: this._name.value,
+      description: this._description?.value,
+      createdAt: this._createdAt?.value,
+      modifiedAt: this._modifiedAt?.value,
+      deletedAt: this._deletedAt?.value
+    };
   }
 }

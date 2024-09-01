@@ -10,7 +10,7 @@ export default class GeniallyDescription extends StringValueObject {
 
     private ensureLengthIsLessThan125Characters(value: string): void {
         if (value.length > MAX_VALUE) {
-            throw new DescriptionLengthExceeded(`The Course Name <${value}> has more than 30 characters`);
+            throw new DescriptionLengthExceeded(`The description <${value}> has more than 125 characters`);
         }
     }
 }
