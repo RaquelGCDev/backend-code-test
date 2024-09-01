@@ -22,7 +22,8 @@
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
     "express": "^4.19.2",
-    "lusca": "^1.7.0"
+    "lusca": "^1.7.0",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/compression": "^1.7.5",
@@ -37,7 +38,9 @@
     "errorhandler": "^1.5.1",
     "eslint": "^9.9.0",
     "nodemon": "^3.1.4",
+    "supertest": "^7.0.0",
     "ts-node-dev": "2.0.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
   }
 }

@@ -12,3 +12,31 @@ describe("POST to create a new genially", () => {
         expect(response.status).toBe(201);
     });
 });
+
+describe("PUT to rename an existing genially", () => {
+    it("Should return 204 response code", async () => {
+        await request(app)
+            .post("/genially")
+            .send({ id: "e2dedd4e-1a02-4af2-9158-fd55261795f3", name: "aName", description: "aDescription" });
+
+        const response = await request(app)
+            .put("/genially/e2dedd4e-1a02-4af2-9158-fd55261795f3")
+            .send({ name: "aNewName" });
+
+        expect(response.status).toEqual(204);
+    });
+});
+
+describe("DELETE to softly remove an existing genially", () => {
+    it("Should return 204 response code", async () => {
+        await request(app)
+            .post("/genially")
+            .send({ id: "0f9241b4-366a-40a1-b511-4866a9aafa6f", name: "aName", description: "aDescription" });
+
+        const response = await request(app)
+            .delete("/genially/0f9241b4-366a-40a1-b511-4866a9aafa6f")
+            .send();
+
+        expect(response.status).toEqual(204);
+    });
+});

@@ -1,11 +1,12 @@
 import Genially from "./Genially";
+import GeniallyId from "./value-object/GeniallyId";
 
 interface GeniallyRepository {
   save(genially: Genially): Promise<void>;
 
-  find(id: string): Promise<Genially>;
+  find(id: GeniallyId): Promise<Genially>;
 
-  delete(id: string): Promise<void>;
+  delete(id: GeniallyId): Promise<void>;
 }
 
 export default GeniallyRepository;

@@ -1,0 +1,1 @@
+export class NameLengthNotValid extends Error {}
