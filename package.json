@@ -13,7 +13,8 @@
     "test": "vitest",
     "watch-node": "nodemon dist/server.js",
     "watch-test": "echo \"No test suite was configured.\" && exit 1",
-    "watch-ts": "tsc -w"
+    "watch-ts": "tsc -w",
+    "watch": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\""
   },
   "engines": {
     "node": "^20.0.0"
