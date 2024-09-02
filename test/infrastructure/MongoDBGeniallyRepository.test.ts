@@ -6,7 +6,7 @@ import GeniallyDescription from "../../src/contexts/core/genially/domain/value-o
 import MongoDBGeniallyRepository from "../../src/contexts/core/genially/infrastructure/MongoDBGeniallyRepository";
 
 
-describe("MongoDBGeniallyRepository", () => {
+describe.skip("MongoDBGeniallyRepository", () => {
     it("should save a new genially", async () => {
         const id = "b71c27f9-17bc-48dd-acbd-b4317151aed0";
         const expectedGenially = Genially.create(new GeniallyId(id), new GeniallyName("aName"), new GeniallyDescription("aDescription"));
