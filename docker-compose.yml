@@ -1,0 +1,17 @@
+services:
+  mongo:
+    image: mongo:5.0.0
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/dev
+    volumes:
+      - ./data:/data/db
+    container_name: genially-database
+    expose:
+      - '27017'
+    ports:
+      - 27017:27017
+    restart: always
+volumes:
+  node_modules:
+  esdata:
+    driver: local
