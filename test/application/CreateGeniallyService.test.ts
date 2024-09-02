@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-
+import {EventBusMock} from "../mocks/EventBusMock";
 import Genially from "../../src/contexts/core/genially/domain/Genially";
 import CreateGeniallyService from "../../src/contexts/core/genially/application/CreateGeniallyService";
 import GeniallyId from "../../src/contexts/core/genially/domain/value-object/GeniallyId";
@@ -13,7 +13,9 @@ describe('CreateGeniallyService', () => {
     it('should create a new record', async () => {
         // Mock the repository
         const geniallyRepository = vi.mocked(new InMemoryGeniallyRepository());
+        const eventBus = new EventBusMock();
         const mockSave = vi.spyOn(geniallyRepository, 'save');
+
 
         const id = "d25bc90b-8b2b-4e18-b6aa-929330b5f6a7";
         const name = "aName";
@@ -21,7 +23,7 @@ describe('CreateGeniallyService', () => {
         const expectedGenially = Genially.create(new GeniallyId(id), new GeniallyName(name), new GeniallyDescription(description));
 
 
-        const createGeniallyService = new CreateGeniallyService(geniallyRepository);
+        const createGeniallyService = new CreateGeniallyService(geniallyRepository, eventBus);
         await createGeniallyService.execute({id, name, description});
 
         expect(mockSave).toHaveBeenCalledWith(expectedGenially);
@@ -34,6 +36,7 @@ describe('CreateGeniallyService', () => {
         expect(() => {
             const geniallyRepository = vi.mocked(new InMemoryGeniallyRepository());
             const mockSave = vi.spyOn(geniallyRepository, 'save');
+            const eventBus = new EventBusMock();
 
             const id = "d25bc90b-8b2b-4e18-b6aa-929330b5f6a7";
             const name = "a";
@@ -41,7 +44,7 @@ describe('CreateGeniallyService', () => {
             const expectedGenially = Genially.create(new GeniallyId(id), new GeniallyName(name), new GeniallyDescription(description));
 
 
-            const createGeniallyService = new CreateGeniallyService(geniallyRepository);
+            const createGeniallyService = new CreateGeniallyService(geniallyRepository,eventBus);
             createGeniallyService.execute({id, name, description});
 
             expect(mockSave).toHaveBeenCalledWith(expectedGenially);
@@ -55,6 +58,7 @@ describe('CreateGeniallyService', () => {
         expect(() => {
             const geniallyRepository = vi.mocked(new InMemoryGeniallyRepository());
             const mockSave = vi.spyOn(geniallyRepository, 'save');
+            const eventBus = new EventBusMock();
 
             const id = "d25bc90b-8b2b-4e18-b6aa-929330b5f6a7";
             const name = "aName";
@@ -62,7 +66,7 @@ describe('CreateGeniallyService', () => {
             const expectedGenially = Genially.create(new GeniallyId(id), new GeniallyName(name), new GeniallyDescription(description));
 
 
-            const createGeniallyService = new CreateGeniallyService(geniallyRepository);
+            const createGeniallyService = new CreateGeniallyService(geniallyRepository,eventBus);
             createGeniallyService.execute({id, name, description});
 
             expect(mockSave).toHaveBeenCalledWith(expectedGenially);
